@@ -1,0 +1,25 @@
+[] Draw character pixel by pixel so it can go closer to walls (and better ground textures);
+[] Fix diagonal velocity;
+
+[] Implement mouse shooting
+{
+    [] Shooting based on mouse position;
+    [] Shooting animations;
+}
+
+[] Enemies
+{
+    [] Shooting enemies;
+    [] "Walking" enemies (optional);
+    [] Make enemies die when getting shot;
+}
+
+
+[] Game logic 42 (essential)
+{
+    [] Draw the exit;
+    [] Make character dies when getting shot;
+    [] Make character be able to collect collectables;
+}
+
+[] Use itoa to show nice fonts in the game;
