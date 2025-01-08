@@ -12,6 +12,30 @@
 
 #include "../main.h"
 
+int	close_window(int key, t_game *game)
+{
+    t_matrix *map;
+    t_player *player;
+
+    map = game->map;
+    player = game->player;
+	if (key == XK_Escape)
+	{
+        mlx_destroy_image(game->mlx_ptr, player->idle_left);
+        mlx_destroy_image(game->mlx_ptr, player->idle_right);
+        mlx_destroy_image(game->mlx_ptr, player->idle_up);
+        mlx_destroy_image(game->mlx_ptr, game->ground);
+        mlx_destroy_image(game->mlx_ptr, game->wall);
+        mlx_destroy_image(game->mlx_ptr, game->sheet);
+		mlx_destroy_window(game->mlx_ptr, game->mlx_window);
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
+        free_map(map);
+		exit(0);
+	}
+    return (0);
+}
+
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
 void    delay_scene()
@@ -19,58 +43,59 @@ void    delay_scene()
     int i;
 
     i = 0;
-    while (i < 10000000)
+    while (i < 9000000)
         i++;
 }
 
 void draw_scene(t_game *game) {
     t_player *player;
     player = game->player;
-    // Limpe a janela e desenhe a cena estática
-    //mlx_clear_window(game->mlx_ptr, game->mlx_window);
-    // Desenhe o personagem ou outros elementos aqui
-    // Exemplo: desenhar um ponto representando o personagem
     mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, player->idle_right, player->player_y, player->player_x);
 }
 
 int game_loop(t_game *game) {
     t_player *player;
-    player = game->player;
     t_matrix *map;
+
+    player = game->player;
     map = game->map;
-    // Atualize a posição do personagem com base no estado das teclas
-    if (game->key_states[97]) { // Esquerda
+    if (game->key_states[97])
+    {
         player->player_y -= 1;
         delay_scene();
     }
-    if (game->key_states[100]) { // Direita
+    if (game->key_states[100])
+    {
         player->player_y += 1;
         delay_scene();
     }
-    if (game->key_states[119]) { // Cima
+    if (game->key_states[119])
+    {
         player->player_x -= 1;
         delay_scene();
     }
-    if (game->key_states[115]) { // Baixo
+    if (game->key_states[115])
+    {
         player->player_x += 1;
         delay_scene();
     }
-    // Redesenhe a cena
     draw_path(game, map);
-    draw_walls(game, map);
     draw_scene(game);
     return 0;
 }
 
-int handle_keypress(int keycode, t_game *game) {
-    // Marca a tecla como pressionada
-    game->key_states[keycode] = 1;
+int handle_keypress(int keycode, t_game *game)
+{
+    close_window(keycode, game);
+    if (keycode >= 0 && keycode <= 255)
+        game->key_states[keycode] = 1;
     return 0;
 }
 
-int handle_keyrelease(int keycode, t_game *game) {
-    // Marca a tecla como liberada
-    game->key_states[keycode] = 0;
+int handle_keyrelease(int keycode, t_game *game)
+{
+    if (keycode >= 0 && keycode <= 255)
+        game->key_states[keycode] = 0;
     return 0;
 }
 
@@ -142,6 +167,7 @@ void    init_map(t_game *game, t_matrix *map)
     x = map->x * 64;
     y = map->y * 64;
     game->mlx_window = mlx_new_window(game->mlx_ptr, y, x, "so_long");
+    draw_walls(game, map);
     mlx_loop_hook(game->mlx_ptr, game_loop, game);
     mlx_hook(game->mlx_window, 2, 1L << 0, handle_keypress, game);
     mlx_hook(game->mlx_window, 3, 1L << 1, handle_keyrelease, game);
@@ -150,12 +176,16 @@ void    init_map(t_game *game, t_matrix *map)
 void    init_game(t_game *game, t_matrix *map)
 {
     t_player *player;
+    int i;
     
     player = game->player;
     game->map = map;
     game->mlx_ptr = mlx_init();
     player->player_x *= 64;
     player->player_y *= 64;
+    i = -1;
+    while (i++ < 256)
+        game->key_states[i] = 0;
     if (!game->mlx_ptr)
     {
         free_map(map);

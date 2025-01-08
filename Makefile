@@ -52,4 +52,3 @@ re: fclean all
 run: 
 	make
 	./$(NAME) map.ber
-	clean

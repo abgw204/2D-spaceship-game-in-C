@@ -12,18 +12,7 @@
 
 #include "main.h"
 
-void	close_window(int key, t_game *game)
-{
-	if (key == XK_Escape)
-	{
-		mlx_destroy_window(game->mlx_ptr, game->mlx_window);
-		mlx_destroy_display(game->mlx_ptr);
-		free(game->mlx_ptr);
-		exit(1);
-	}
-}
-
-int	w_a(int key, t_game *game, t_player *player, t_matrix *map)
+/*int	w_a(int key, t_game *game, t_player *player, t_matrix *map)
 {
 	if (key == 119 && !is_wall(map, player->player_x - 1, player->player_y))
 	{
@@ -55,9 +44,9 @@ int	s_d(int key, t_game *game, t_player *player, t_matrix *map)
 		player->player_y++;
 	}
 	return 0;
-}
+}*/
 
-int	key_structure(int key, t_game *game)
+/*int	key_structure(int key, t_game *game)
 {
 	t_player *player;
 	t_matrix *map;
@@ -68,7 +57,7 @@ int	key_structure(int key, t_game *game)
 	s_d(key, game, player, map);
 	close_window(key, game);
 	return (0);
-}
+}*/
 
 int main(int argc, char *argv[])
 {
@@ -79,9 +68,6 @@ int main(int argc, char *argv[])
 	map = create_map(argc, argv);
 	is_map_valid(&map, argv[1], &player);
 	game.player = &player;
-	for (int i = 0; i < 256; i++) {
-        game.key_states[i] = 0;
-    }
 	init_game(&game, &map);
 	/*
 	// keys

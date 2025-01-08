@@ -83,6 +83,6 @@ void    get_exit_pos(t_matrix *map, t_player *player);
 int		key_structure(int key, t_game *game);
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
-bool    is_wall(t_matrix *map, int x, int y);
+int	close_window(int key, t_game *game);
 
 #endif
