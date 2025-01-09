@@ -28,6 +28,14 @@
 # define COLLECTABLE 'C'
 # define PLAYER_START 'P'
 
+# define DARK_GRAY #282828
+# define GRAY #484848
+# define WHITE #f8f8f8
+# define LIGHT_GRAY #a0a0a0
+# define LIGHTER_GRAY #c7c7c7
+# define BABY_BLUE #90e0e8
+# define BABY_BLUE1 #abf6fd
+
 typedef struct gameObjects
 {
 	int		player_x;
@@ -62,7 +70,6 @@ typedef struct gameData
 	int		key_states[256];
 } t_game;
 
-
 void	map_error();
 void    init_matrix(t_matrix *matrix, char *filename);
 t_matrix create_map(int argc, char *argv[]);
@@ -83,6 +90,6 @@ void    get_exit_pos(t_matrix *map, t_player *player);
 int		key_structure(int key, t_game *game);
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
-int	close_window(int key, t_game *game);
+int		close_window(int key, t_game *game);
 
 #endif

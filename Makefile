@@ -16,7 +16,9 @@ FUNCTIONS =	main.c \
 			$(GAME_DIR)/mlx_error.c \
 			$(GAME_DIR)/game_utils.c \
 			$(GAME_DIR)/load_images.c \
-			$(GAME_DIR)/game_utils.c
+			$(GAME_DIR)/game_utils.c \
+			$(GAME_DIR)/ft_split.c \
+			$(GAME_DIR)/ft_calloc.c
  
 OBJS =	main.o \
 		$(MAP_PARSING_DIR)/map_error.o \
@@ -30,7 +32,9 @@ OBJS =	main.o \
 		$(GAME_DIR)/mlx_error.o \
 		$(GAME_DIR)/game_utils.o \
 		$(GAME_DIR)/load_images.o \
-		$(GAME_DIR)/game_utils.o
+		$(GAME_DIR)/game_utils.o \
+		$(GAME_DIR)/ft_split.o \
+		$(GAME_DIR)/ft_calloc.o
 
 LIB = so_long.a
 
