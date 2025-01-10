@@ -18,7 +18,10 @@ FUNCTIONS =	main.c \
 			$(GAME_DIR)/load_images.c \
 			$(GAME_DIR)/game_utils.c \
 			$(GAME_DIR)/ft_split.c \
-			$(GAME_DIR)/ft_calloc.c
+			$(GAME_DIR)/ft_calloc.c \
+			$(GAME_DIR)/draw_spaceship_up.c \
+			$(GAME_DIR)/draw_projectile.c \
+			$(GAME_DIR)/create_projectile.c
  
 OBJS =	main.o \
 		$(MAP_PARSING_DIR)/map_error.o \
@@ -34,7 +37,10 @@ OBJS =	main.o \
 		$(GAME_DIR)/load_images.o \
 		$(GAME_DIR)/game_utils.o \
 		$(GAME_DIR)/ft_split.o \
-		$(GAME_DIR)/ft_calloc.o
+		$(GAME_DIR)/ft_calloc.o \
+		$(GAME_DIR)/draw_spaceship_up.o \
+		$(GAME_DIR)/draw_projectile.o \
+		$(GAME_DIR)/create_projectile.o
 
 LIB = so_long.a
 

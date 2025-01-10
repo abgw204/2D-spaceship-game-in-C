@@ -1,2 +1,3 @@
 t_matrix **map;
 mlx_images;
+projectiles linked list;

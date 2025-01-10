@@ -11,49 +11,62 @@
 /* ************************************************************************** */
 
 #include "../main.h"
+#include "../color.h"
 
-void    draw_path(t_game *game, t_matrix *map);
-void    draw_walls(t_game *game, t_matrix *map);
 void    delay_scene()
 {
     int i;
 
     i = 0;
-    while (i < 6500000)
+    while (i < 2300000)
         i++;
 }
 
-void draw_scene(t_game *game) {
+void draw_scene(t_game *game)
+{
     t_player *player;
+    Projectile *projectile;
+
     player = game->player;
-    mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, player->idle_right, player->player_y, player->player_x);
+    projectile = game->projectiles;
+    if (player->direction == 'w')
+        draw_spaceship_up(player->player_x, player->player_y, game);
+    if (player->direction == 'a')
+        draw_spaceship_up(player->player_x, player->player_y, game);
+    if (player->direction == 's')
+        draw_spaceship_up(player->player_x, player->player_y, game);
+    if (player->direction == 'd')
+        draw_spaceship_up(player->player_x, player->player_y, game);
+    move_projectiles(projectile, game);
 }
 
-int game_loop(t_game *game) {
+int game_loop(t_game *game)
+{
     t_player *player;
     t_matrix *map;
 
     player = game->player;
     map = game->map;
+    delay_scene();
     if (game->key_states[97])
     {
         player->player_y -= 1;
-        delay_scene();
+        player->direction = 'a';
     }
-    if (game->key_states[100])
+    else if (game->key_states[100])
     {
         player->player_y += 1;
-        delay_scene();
+        player->direction = 'd';
     }
-    if (game->key_states[119])
+    else if (game->key_states[119])
     {
         player->player_x -= 1;
-        delay_scene();
+        player->direction = 'w';
     }
-    if (game->key_states[115])
+    else if (game->key_states[115])
     {
         player->player_x += 1;
-        delay_scene();
+        player->direction = 's';
     }
     draw_path(game, map);
     draw_scene(game);
@@ -62,9 +75,21 @@ int game_loop(t_game *game) {
 
 int handle_keypress(int keycode, t_game *game)
 {
+    t_player *player;
+
+    player = game->player;
     close_window(keycode, game);
     if (keycode >= 0 && keycode <= 255)
         game->key_states[keycode] = 1;
+    if (keycode == 32)
+    {
+        if (!game->projectiles)
+            game->projectiles = create_projectile(player);
+        else
+        {
+            append_projectile(&game->projectiles, create_projectile(player));
+        }
+    }
     return 0;
 }
 
@@ -90,7 +115,7 @@ void    draw_path(t_game *game, t_matrix *map)
     {
         while (++i < map->y - 1)
         {
-            if (map->matrix[j][i] == PATH)
+            if (map->matrix[j][i] == PATH || map->matrix[j][i] == PLAYER_START)
             {
                 mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
                 game->ground, gap_y, gap_x);
@@ -149,6 +174,7 @@ void    init_map(t_game *game, t_matrix *map)
     mlx_hook(game->mlx_window, 3, 1L << 1, handle_keyrelease, game);
     mlx_loop(game->mlx_ptr);
 }
+
 void    init_game(t_game *game, t_matrix *map)
 {
     t_player *player;
@@ -159,9 +185,13 @@ void    init_game(t_game *game, t_matrix *map)
     game->mlx_ptr = mlx_init();
     player->player_x *= 64;
     player->player_y *= 64;
-    i = -1;
-    while (i++ < 256)
+    player->direction = 'w';
+    i = 0;
+    while (i < 256)
+    {
         game->key_states[i] = 0;
+        i++;
+    }
     if (!game->mlx_ptr)
     {
         free_map(map);

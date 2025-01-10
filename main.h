@@ -28,25 +28,15 @@
 # define COLLECTABLE 'C'
 # define PLAYER_START 'P'
 
-# define DARK_GRAY #282828
-# define GRAY #484848
-# define WHITE #f8f8f8
-# define LIGHT_GRAY #a0a0a0
-# define LIGHTER_GRAY #c7c7c7
-# define BABY_BLUE #90e0e8
-# define BABY_BLUE1 #abf6fd
-
 typedef struct gameObjects
 {
 	int		player_x;
 	int		player_y;
 	int 	exit_x;
 	int		exit_y;
-	void	*idle_left;
-	void	*idle_right;
-	void	*idle_up;
 	int		x_map;
 	int		y_map;
+	char	direction;
 } t_player;
 
 typedef struct gameMap
@@ -58,6 +48,14 @@ typedef struct gameMap
 	int		collectables;
 } t_matrix;
 
+typedef struct spaceshipProjectiles
+{
+	int		x;
+	int		y;
+	int		direction;
+	struct spaceshipProjectiles *next;
+} Projectile;
+
 typedef struct gameData
 {
 	void	*mlx_ptr;
@@ -67,8 +65,10 @@ typedef struct gameData
 	void	*sheet;
 	t_player *player;
 	t_matrix *map;
+	Projectile *projectiles;
 	int		key_states[256];
 } t_game;
+
 
 void	map_error();
 void    init_matrix(t_matrix *matrix, char *filename);
@@ -91,5 +91,15 @@ int		key_structure(int key, t_game *game);
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
 int		close_window(int key, t_game *game);
+char	**ft_split(char const *s, char c);
+void	*ft_calloc(size_t num, size_t size);
+void	draw_spaceship_up(int x, int y, t_game *game);
+void	draw_projectile(int x, int y, t_game *game);
+Projectile	*create_projectile(t_player *player);
+void	append_projectile(Projectile **list, Projectile *new);
+void    move_projectiles(Projectile *projectile, t_game *game);
+void    delay_scene();
+void    draw_path(t_game *game, t_matrix *map);
+void    draw_walls(t_game *game, t_matrix *map);
 
 #endif

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.h"
+#include "color.h"
 
 /*int	w_a(int key, t_game *game, t_player *player, t_matrix *map)
 {
@@ -64,10 +65,13 @@ int main(int argc, char *argv[])
 	t_matrix	map;
 	t_game		game;
 	t_player	player;
+	Projectile	*projectiles;
 
 	map = create_map(argc, argv);
+	projectiles = NULL;
 	is_map_valid(&map, argv[1], &player);
 	game.player = &player;
+	game.projectiles = projectiles;
 	init_game(&game, &map);
 	/*
 	// keys

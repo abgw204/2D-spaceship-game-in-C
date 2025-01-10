@@ -1,11 +1,7 @@
-[] Draw character pixel by pixel so it can go closer to walls (and better ground textures);
-[] Fix diagonal velocity;
+[X] Draw character pixel by pixel so it can go closer to walls (and better ground textures);
 
-[] Implement mouse shooting
-{
-    [] Shooting based on mouse position;
-    [] Shooting animations;
-}
+[X] Implement shooting
+[] Shooting animations (explosions);
 
 [] Enemies
 {
@@ -13,7 +9,6 @@
     [] "Walking" enemies (optional);
     [] Make enemies die when getting shot;
 }
-
 
 [] Game logic 42 (essential)
 {
