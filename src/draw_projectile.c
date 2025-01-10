@@ -40,11 +40,16 @@ void draw_projectile(int x, int y, t_game *game)
 {
     int fd;
     int bytes_read;
-    char    pixels[250];
+    static char    pixels[250];
 
-    fd = open("sprites/projectile.txt", O_RDONLY);
-    bytes_read = read(fd, pixels, 1024);
-    pixels[bytes_read] = '\0';
+    fd = 0;
+    if (!pixels[0])
+    {
+        printf("oi\n\n");
+        fd = open("sprites/projectile.txt", O_RDONLY);
+        bytes_read = read(fd, pixels, 250);
+        pixels[bytes_read] = '\0';
+    }
     draw_in_fact(x, y, pixels, game);
     close(fd);
 }
