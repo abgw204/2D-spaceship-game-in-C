@@ -68,6 +68,10 @@ int game_loop(t_game *game)
         player->player_x += 1;
         player->direction = 's';
     }
+    if (game->projectile_delay < 30)
+    {
+        game->projectile_delay++;
+    }
     draw_path(game, map);
     draw_scene(game);
     return 0;
@@ -81,8 +85,9 @@ int handle_keypress(int keycode, t_game *game)
     close_window(keycode, game);
     if (keycode >= 0 && keycode <= 255)
         game->key_states[keycode] = 1;
-    if (keycode == 32)
+    if (game->projectile_delay >= 30 && keycode == 32)
     {
+        game->projectile_delay = 0;
         if (!game->projectiles)
             game->projectiles = create_projectile(player);
         else
@@ -181,11 +186,12 @@ void    init_game(t_game *game, t_matrix *map)
     int i;
     
     player = game->player;
+    game->projectile_delay = 30;
     game->map = map;
     game->mlx_ptr = mlx_init();
-    player->player_x *= 64;
-    player->player_y *= 64;
-    player->direction = 'w';
+    player->player_x = player->player_x * 64 + 17;
+    player->player_y = player->player_y * 64 + 17;
+    player->direction = 'd';
     i = 0;
     while (i < 256)
     {

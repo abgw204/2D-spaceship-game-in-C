@@ -62,7 +62,7 @@ typedef struct gameData
 	void	*mlx_window;
 	void	*ground;
 	void	*wall;
-	void	*sheet;
+	int		projectile_delay;
 	t_player *player;
 	t_matrix *map;
 	Projectile *projectiles;
