@@ -1,5 +1,19 @@
 #include "../main.h"
 
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n > 0)
+	{
+		*str = (unsigned char)c;
+		n--;
+		str++;
+	}
+	return (s);
+}
+
 void	*ft_calloc(size_t num, size_t size)
 {
 	void	*ptr;
@@ -11,10 +25,6 @@ void	*ft_calloc(size_t num, size_t size)
 	ptr = malloc(total_size);
 	if (!ptr)
 		return (NULL);
-	while ((size_t)ptr < total_size)
-    {
-        *(unsigned char *)ptr = '\0';
-        ptr++;
-    }
-	return (ptr + 0);
+	ft_memset(ptr, 0, total_size);
+	return (ptr);
 }
