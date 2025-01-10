@@ -3,10 +3,8 @@
 int	close_window(int key, t_game *game)
 {
     t_matrix *map;
-    t_player *player;
 
     map = game->map;
-    player = game->player;
 	if (key == XK_Escape)
 	{
         mlx_destroy_image(game->mlx_ptr, game->ground);

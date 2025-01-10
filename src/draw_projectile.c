@@ -45,7 +45,6 @@ void draw_projectile(int x, int y, t_game *game)
     fd = 0;
     if (!pixels[0])
     {
-        printf("oi\n\n");
         fd = open("sprites/projectile.txt", O_RDONLY);
         bytes_read = read(fd, pixels, 250);
         pixels[bytes_read] = '\0';
