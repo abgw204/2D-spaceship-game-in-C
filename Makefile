@@ -20,6 +20,9 @@ FUNCTIONS =	main.c \
 			$(GAME_DIR)/ft_split.c \
 			$(GAME_DIR)/ft_calloc.c \
 			$(GAME_DIR)/draw_spaceship_up.c \
+			$(GAME_DIR)/draw_spaceship_down.c \
+			$(GAME_DIR)/draw_spaceship_left.c \
+			$(GAME_DIR)/draw_spaceship_right.c \
 			$(GAME_DIR)/draw_projectile.c \
 			$(GAME_DIR)/create_projectile.c
  
@@ -39,6 +42,9 @@ OBJS =	main.o \
 		$(GAME_DIR)/ft_split.o \
 		$(GAME_DIR)/ft_calloc.o \
 		$(GAME_DIR)/draw_spaceship_up.o \
+		$(GAME_DIR)/draw_spaceship_down.o \
+		$(GAME_DIR)/draw_spaceship_left.o \
+		$(GAME_DIR)/draw_spaceship_right.o \
 		$(GAME_DIR)/draw_projectile.o \
 		$(GAME_DIR)/create_projectile.o
 

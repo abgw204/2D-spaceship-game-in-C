@@ -1,0 +1,30 @@
+       XXXXXX              
+      X@@@@X               
+      X###@X               
+      XXXXXX               
+      X****$X              
+     XX*****$XX            
+    XOX*****$X$X           
+    XOX******$XX           
+     XX******$$X           
+      X$$$$$$$X$XX         
+      XXXXXXXX$$$$X        
+     X@@@@@@@X**$$$XXXXX   
+   -XO#####@X****$X$****X  
+ --XOO####@X*****X$####**X 
+--yXO$XXXXX$X$$$X$#&&&&#**X
+--yXO$XXXXX$X$$$X$#&&**#**X
+ --XOO####@X*****X$####**X 
+   -XO#####@X****$X$****X  
+     X@@@@@@@X**$$$XXXXX   
+      XXXXXXXX$$$$X        
+      X$$$$$$$X$XX         
+     XX******$$X           
+    XOX******$XX           
+    XOX*****$X$X           
+     XX*****$XX            
+      X****$X              
+      XXXXXX               
+      X###@X               
+      X@@@@X               
+       XXXXXX              

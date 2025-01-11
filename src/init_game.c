@@ -18,7 +18,7 @@ void    delay_scene()
     int i;
 
     i = 0;
-    while (i < 2300000)
+    while (i < 8500000)
         i++;
 }
 
@@ -32,11 +32,11 @@ void draw_scene(t_game *game)
     if (player->direction == 'w')
         draw_spaceship_up(player->player_x, player->player_y, game);
     if (player->direction == 'a')
-        draw_spaceship_up(player->player_x, player->player_y, game);
+        draw_spaceship_left(player->player_x, player->player_y, game);
     if (player->direction == 's')
-        draw_spaceship_up(player->player_x, player->player_y, game);
+        draw_spaceship_down(player->player_x, player->player_y, game);
     if (player->direction == 'd')
-        draw_spaceship_up(player->player_x, player->player_y, game);
+        draw_spaceship_right(player->player_x, player->player_y, game);
     move_projectiles(projectile, game);
 }
 

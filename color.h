@@ -25,5 +25,6 @@
 # define ORANGE 0xff9b0f
 # define LIGHT_ORANGE 0xfdb551
 # define LIGHTER_ORANGE 0xffdeb0
+# define YELLOW 0xefac28
 
 #endif

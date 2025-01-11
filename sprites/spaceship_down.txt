@@ -1,0 +1,27 @@
+              --              
+             ----             
+             -yy-             
+            -XXXX-            
+      XX    XOOOOX    XX      
+     XOOX  XOO$$OOX  XOOX     
+ XXXXXXXXXX@##XX##@XXXXXXXXXX 
+X@#X*****$X@##XX##@X$*****X#@X
+X@#X*****$X@##XX##@X$*****X#@X
+X@#X*****$X@##XX##@X$*****X#@X
+X@@X*****$X@#@XX@#@X$*****X@@X
+XXXX$****$X@@X$$X@@X$****$XXXX
+X   X$$**$X@X*XX*X@X$**$$X   X
+     XX$$$XX**$$**XX$$$XX     
+     X$X$X$***$$***$X$X$X     
+      XXX$$***$$***$$XXX      
+         X$$**XX**$$X         
+         X$$$X$$X$$$X         
+          X$X$##$X$X          
+           X$#&&#$X           
+           X*#&&#*X           
+           X*#*&#*X           
+           X*#*&#*X           
+           X**##**X           
+            X****X            
+             X**X             
+              XX              

@@ -73,16 +73,4 @@ int main(int argc, char *argv[])
 	game.player = &player;
 	game.projectiles = projectiles;
 	init_game(&game, &map);
-	/*
-	// keys
-	mlx_key_hook(data.mlx_window, key_structure, &data);
-
-	// loop
-	mlx_loop(data.mlx_ptr);
-
-	mlx_destroy_window(data.mlx_ptr, data.mlx_window);
-
-	mlx_destroy_display(data.mlx_ptr);
-
-	free(data.mlx_ptr);*/
 }
