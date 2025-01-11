@@ -53,6 +53,7 @@ void draw_spaceship_up(int x, int y, t_game *game)
     static char    pixels[1024];
 
     fd = 0;
+    bytes_read = 0;
     if (!pixels[0])
     {
         fd = open("sprites/spaceship_up.txt", O_RDONLY);
