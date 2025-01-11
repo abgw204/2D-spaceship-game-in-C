@@ -1,0 +1,8 @@
+X      X
+XX    XX
+XO#  #OX
+#XX##XX#
+ #XXXX# 
+ #XXXX# 
+  #XX#  
+   ##   

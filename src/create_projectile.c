@@ -7,8 +7,26 @@ Projectile	*create_projectile(t_player *player)
 	new_projectile = (Projectile *)malloc(sizeof(Projectile));
 	if (!new_projectile)
 		return (NULL);
-	new_projectile->x = player->player_x - 10;
-    new_projectile->y = player->player_y + 11;
+    if (player->direction == 'w')
+    {
+	    new_projectile->x = player->player_x - 10;
+        new_projectile->y = player->player_y + 11;
+    }
+    else if (player->direction == 'a')
+    {
+	    new_projectile->x = player->player_x + 10;
+        new_projectile->y = player->player_y - 10;
+    }
+    else if (player->direction == 's')
+    {
+	    new_projectile->x = player->player_x + 30;
+        new_projectile->y = player->player_y + 11;
+    }
+    else if (player->direction == 'd')
+    {
+	    new_projectile->x = player->player_x + 10;
+        new_projectile->y = player->player_y + 30;
+    }
     new_projectile->direction = player->direction;
 	new_projectile->next = (NULL);
 	return (new_projectile);
@@ -38,14 +56,25 @@ void    move_projectiles(Projectile *projectile, t_game *game)
     while (projectile)
     {
         if (projectile->direction == 'w')
+        {
             projectile->x -= 2;
-        else if (projectile->direction == 's')
-            projectile->x += 2;
+            draw_projectile_up(projectile->x, projectile->y, game);
+        }
         else if (projectile->direction == 'a')
+        {
             projectile->y -= 2;
+            draw_projectile_left(projectile->x, projectile->y, game);
+        }
+        else if (projectile->direction == 's')
+        {
+            projectile->x += 2;
+            draw_projectile_down(projectile->x, projectile->y, game);
+        }
         else if (projectile->direction == 'd')
+        {
             projectile->y += 2;
-        draw_projectile(projectile->x, projectile->y, game);
+            draw_projectile_right(projectile->x, projectile->y, game);
+        }
         projectile = projectile->next;
     }
 }

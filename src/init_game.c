@@ -69,9 +69,7 @@ int game_loop(t_game *game)
         player->direction = 's';
     }
     if (game->projectile_delay < 30)
-    {
         game->projectile_delay++;
-    }
     draw_path(game, map);
     draw_scene(game);
     return 0;
@@ -91,9 +89,7 @@ int handle_keypress(int keycode, t_game *game)
         if (!game->projectiles)
             game->projectiles = create_projectile(player);
         else
-        {
             append_projectile(&game->projectiles, create_projectile(player));
-        }
     }
     return 0;
 }

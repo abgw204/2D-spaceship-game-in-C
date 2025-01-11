@@ -23,7 +23,10 @@ FUNCTIONS =	main.c \
 			$(GAME_DIR)/draw_spaceship_down.c \
 			$(GAME_DIR)/draw_spaceship_left.c \
 			$(GAME_DIR)/draw_spaceship_right.c \
-			$(GAME_DIR)/draw_projectile.c \
+			$(GAME_DIR)/draw_projectile_up.c \
+			$(GAME_DIR)/draw_projectile_down.c \
+			$(GAME_DIR)/draw_projectile_left.c \
+			$(GAME_DIR)/draw_projectile_right.c \
 			$(GAME_DIR)/create_projectile.c
  
 OBJS =	main.o \
@@ -45,7 +48,10 @@ OBJS =	main.o \
 		$(GAME_DIR)/draw_spaceship_down.o \
 		$(GAME_DIR)/draw_spaceship_left.o \
 		$(GAME_DIR)/draw_spaceship_right.o \
-		$(GAME_DIR)/draw_projectile.o \
+		$(GAME_DIR)/draw_projectile_up.o \
+		$(GAME_DIR)/draw_projectile_down.o \
+		$(GAME_DIR)/draw_projectile_left.o \
+		$(GAME_DIR)/draw_projectile_right.o \
 		$(GAME_DIR)/create_projectile.o
 
 LIB = so_long.a

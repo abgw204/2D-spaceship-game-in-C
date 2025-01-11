@@ -36,7 +36,7 @@ static void    draw_in_fact(int x, int y, char *pixels, t_game *game)
     free(matrix);
 }
 
-void draw_projectile(int x, int y, t_game *game)
+void draw_projectile_up(int x, int y, t_game *game)
 {
     int fd;
     int bytes_read;
@@ -45,7 +45,7 @@ void draw_projectile(int x, int y, t_game *game)
     fd = 0;
     if (!pixels[0])
     {
-        fd = open("sprites/projectile.txt", O_RDONLY);
+        fd = open("sprites/projectile_up.txt", O_RDONLY);
         bytes_read = read(fd, pixels, 250);
         pixels[bytes_read] = '\0';
     }
