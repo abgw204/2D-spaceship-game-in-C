@@ -16,7 +16,6 @@
 # include "./minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
-# include <X11/keysym.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdbool.h>

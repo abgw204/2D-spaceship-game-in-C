@@ -1,0 +1,2 @@
+game_loop;
+draw_in_fact (all 8 of them);

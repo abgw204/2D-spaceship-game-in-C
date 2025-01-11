@@ -15,6 +15,6 @@
 void    mlx_error()
 {
     write(2, "Error\n", 6);
-    write(2, "Invalid Map", 11);
+    write(2, "MLX_ERROR", 9);
     exit(1);
 }

@@ -28,7 +28,7 @@ Projectile	*create_projectile(t_player *player)
         new_projectile->y = player->player_y + 30;
     }
     new_projectile->direction = player->direction;
-	new_projectile->next = (NULL);
+	new_projectile->next = NULL;
 	return (new_projectile);
 }
 

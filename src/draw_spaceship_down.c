@@ -50,14 +50,14 @@ void draw_spaceship_down(int x, int y, t_game *game)
 {
     int fd;
     int bytes_read;
-    static char    pixels[1024];
+    static char    pixels[811];
 
     fd = 0;
     bytes_read = 0;
     if (!pixels[0])
     {
         fd = open("sprites/spaceship_down.txt", O_RDONLY);
-        bytes_read = read(fd, pixels, 1024);
+        bytes_read = read(fd, pixels, 810);
         pixels[bytes_read] = '\0';
     }
     draw_in_fact(x, y, pixels, game);
