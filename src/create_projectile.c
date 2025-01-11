@@ -14,7 +14,7 @@ Projectile	*create_projectile(t_player *player)
     }
     else if (player->direction == 'a')
     {
-	    new_projectile->x = player->player_x + 10;
+	    new_projectile->x = player->player_x + 11;
         new_projectile->y = player->player_y - 10;
     }
     else if (player->direction == 's')
@@ -24,7 +24,7 @@ Projectile	*create_projectile(t_player *player)
     }
     else if (player->direction == 'd')
     {
-	    new_projectile->x = player->player_x + 10;
+	    new_projectile->x = player->player_x + 11;
         new_projectile->y = player->player_y + 30;
     }
     new_projectile->direction = player->direction;
