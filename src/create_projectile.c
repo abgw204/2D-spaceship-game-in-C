@@ -49,32 +49,56 @@ void	append_projectile(Projectile **list, Projectile *new)
 	current->next = new;
 }
 
-void    move_projectiles(Projectile *projectile, t_game *game)
+void    destroy_projectile_if(Projectile **projectile, t_game *game)
 {
-    if (!projectile)
-        return ;
-    while (projectile)
+    t_matrix    *map;
+    Projectile  *temp;
+    Projectile  *first;
+    
+    map = game->map;
+    temp = *projectile;
+    fisrt = *projectile;
+    while (temp)
     {
-        if (projectile->direction == 'w')
+        if (map->matrix[temp->x / 64][temp->y / 64] == WALL)
         {
-            projectile->x -= 2;
-            draw_projectile_up(projectile->x, projectile->y, game);
+            exit(1);
         }
-        else if (projectile->direction == 'a')
-        {
-            projectile->y -= 2;
-            draw_projectile_left(projectile->x, projectile->y, game);
-        }
-        else if (projectile->direction == 's')
-        {
-            projectile->x += 2;
-            draw_projectile_down(projectile->x, projectile->y, game);
-        }
-        else if (projectile->direction == 'd')
-        {
-            projectile->y += 2;
-            draw_projectile_right(projectile->x, projectile->y, game);
-        }
-        projectile = projectile->next;
+        temp = temp->next;
     }
+}
+
+
+void    move_projectiles(Projectile **projectile, t_game *game)
+{
+    Projectile  *temp;
+
+    if (!*projectile)
+        return ;
+    temp = *projectile;
+    while (temp)
+    {
+        if (temp->direction == 'w')
+        {
+            temp->x -= 2;
+            draw_projectile_up(temp->x, temp->y, game);
+        }
+        else if (temp->direction == 'a')
+        {
+            temp->y -= 2;
+            draw_projectile_left(temp->x, temp->y, game);
+        }
+        else if (temp->direction == 's')
+        {
+            temp->x += 2;
+            draw_projectile_down(temp->x, temp->y, game);
+        }
+        else if (temp->direction == 'd')
+        {
+            temp->y += 2;
+            draw_projectile_right(temp->x, temp->y, game);
+        }
+        temp = temp->next;
+    }
+    destroy_projectile_if(projectile, game);
 }
