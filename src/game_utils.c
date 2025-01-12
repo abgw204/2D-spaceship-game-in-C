@@ -7,7 +7,6 @@ int	close_window(int key, t_game *game)
     map = game->map;
 	if (key == 65307)
 	{
-		printf("%d", key);
         mlx_destroy_image(game->mlx_ptr, game->ground);
         mlx_destroy_image(game->mlx_ptr, game->wall);
 		mlx_destroy_window(game->mlx_ptr, game->mlx_window);

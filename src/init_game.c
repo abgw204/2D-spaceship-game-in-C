@@ -25,19 +25,17 @@ void    delay_scene()
 void draw_scene(t_game *game)
 {
     t_player *player;
-    Projectile *projectile;
 
     player = game->player;
-    projectile = game->projectiles;
     if (player->direction == 'w')
         draw_spaceship_up(player->player_x, player->player_y, game);
-    if (player->direction == 'a')
+    else if (player->direction == 'a')
         draw_spaceship_left(player->player_x, player->player_y, game);
-    if (player->direction == 's')
+    else if (player->direction == 's')
         draw_spaceship_down(player->player_x, player->player_y, game);
-    if (player->direction == 'd')
+    else if (player->direction == 'd')
         draw_spaceship_right(player->player_x, player->player_y, game);
-    move_projectiles(projectile, game);
+    move_projectiles(&game->projectiles, game);
 }
 
 int game_loop(t_game *game)
@@ -71,6 +69,7 @@ int game_loop(t_game *game)
     if (game->projectile_delay < 30)
         game->projectile_delay++;
     draw_path(game, map);
+    draw_walls(game, map);
     draw_scene(game);
     return 0;
 }
@@ -179,6 +178,7 @@ void    init_map(t_game *game, t_matrix *map)
 void    init_game(t_game *game, t_matrix *map)
 {
     t_player *player;
+
     int i;
     
     player = game->player;
