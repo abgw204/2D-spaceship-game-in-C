@@ -102,7 +102,7 @@ void	draw_projectile_left(int x, int y, t_game *game);
 void	draw_projectile_right(int x, int y, t_game *game);
 Projectile	*create_projectile(t_player *player);
 void	append_projectile(Projectile **list, Projectile *new);
-void    move_projectiles(Projectile *projectile, t_game *game);
+void    move_projectiles(Projectile **projectile, t_game *game);
 void    delay_scene();
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
