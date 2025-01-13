@@ -60,7 +60,7 @@ typedef struct gameData
 	void	*mlx_ptr;
 	void	*mlx_window;
 	void	*ground;
-	void	*ground1;
+	void	*astronaut;
 	void	*wall;
 	int		projectile_delay;
 	t_player *player;
@@ -107,5 +107,11 @@ void    move_projectiles(Projectile **projectile, t_game *game);
 void    delay_scene();
 void    draw_path(t_game *game, t_matrix *map);
 void    draw_walls(t_game *game, t_matrix *map);
+void    draw_collectable(t_game *game, t_matrix *map);
+void	draw_astronaut(int x, int y, t_game *game);
+bool    is_wall_left(int x, int y, t_matrix *map);
+bool    is_wall_right(int x, int y, t_matrix *map);
+bool    is_wall_up(int x, int y, t_matrix *map);
+bool    is_wall_down(int x, int y, t_matrix *map);
 
 #endif

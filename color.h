@@ -26,5 +26,8 @@
 # define LIGHT_ORANGE 0xfdb551
 # define LIGHTER_ORANGE 0xffdeb0
 # define YELLOW 0xefac28
+# define DARK_BLUE 0x3b81f3
+# define LIGHT_CIAN 0xc8f8fa
+# define LIGHT_BLUE 0x92d5d8
 
 #endif

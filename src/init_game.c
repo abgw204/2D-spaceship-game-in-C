@@ -46,22 +46,22 @@ int game_loop(t_game *game)
     player = game->player;
     map = game->map;
     delay_scene();
-    if (game->key_states[97])
+    if (game->key_states[97] && !is_wall_left(player->player_x, player->player_y, map))
     {
         player->player_y -= 1;
         player->direction = 'a';
     }
-    else if (game->key_states[100])
+    else if (game->key_states[100] && !is_wall_right(player->player_x, player->player_y, map))
     {
         player->player_y += 1;
         player->direction = 'd';
     }
-    else if (game->key_states[119])
+    else if (game->key_states[119] && !is_wall_up(player->player_x, player->player_y, map))
     {
         player->player_x -= 1;
         player->direction = 'w';
     }
-    else if (game->key_states[115])
+    else if (game->key_states[115] && !is_wall_down(player->player_x, player->player_y, map))
     {
         player->player_x += 1;
         player->direction = 's';
@@ -69,10 +69,9 @@ int game_loop(t_game *game)
     if (game->projectile_delay < 40)
         game->projectile_delay++;
     /*mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
-                game->ground1, 0, 0);
-    mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
-                game->ground1, 500, 0);*/
+                game->ground1, 0, 0);*/
     draw_path(game, map);
+    draw_collectable(game, map);
     draw_walls(game, map);
     draw_scene(game);
     return 0;
@@ -164,6 +163,35 @@ void    draw_walls(t_game *game, t_matrix *map)
     }
 }
 
+void    draw_collectable(t_game *game, t_matrix *map)
+{
+    int i;
+    int j;
+    int gap_y;
+    int gap_x;
+
+    i = -1;
+    j = -1;
+    gap_y = 0;
+    gap_x = 0;
+    while (++j < map->x)
+    {
+        while (++i < map->y)
+        {
+            if (map->matrix[j][i] == COLLECTABLE)
+            {
+                draw_astronaut(gap_x + 25, gap_y + 25, game);
+                gap_y += 64;
+            }
+            else
+                gap_y += 64;
+        }
+        gap_y = 0;
+        gap_x += 64;
+        i = -1;
+    }
+}
+
 void    init_map(t_game *game, t_matrix *map)
 {
     int x;
@@ -171,7 +199,7 @@ void    init_map(t_game *game, t_matrix *map)
 
     x = map->x * 64;
     y = map->y * 64;
-    game->mlx_window = mlx_new_window(game->mlx_ptr, y, x, "so_long");
+    game->mlx_window = mlx_new_window(game->mlx_ptr, y, x + 100, "so_long");
     draw_walls(game, map);
     mlx_loop_hook(game->mlx_ptr, game_loop, game);
     mlx_hook(game->mlx_window, 2, 1L << 0, handle_keypress, game);
