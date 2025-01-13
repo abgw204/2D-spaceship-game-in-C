@@ -53,18 +53,21 @@ void    destroy_projectile_if(Projectile **projectile, t_game *game)
 {
     t_matrix    *map;
     Projectile  *temp;
-    Projectile  *first;
     
     map = game->map;
+    if (!*projectile || !projectile)
+        return ;
     temp = *projectile;
-    fisrt = *projectile;
-    while (temp)
+    if (map->matrix[temp->x / 64][temp->y / 64] == WALL)
     {
-        if (map->matrix[temp->x / 64][temp->y / 64] == WALL)
-        {
-            exit(1);
-        }
-        temp = temp->next;
+        *projectile = temp->next;
+        free(temp);
+        destroy_projectile_if(projectile, game);
+    }
+    else
+    {
+        temp = *projectile;
+        destroy_projectile_if(&temp->next, game);
     }
 }
 
