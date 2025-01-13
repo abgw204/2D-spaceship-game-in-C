@@ -18,7 +18,7 @@ void    delay_scene()
     int i;
 
     i = 0;
-    while (i < 8500000)
+    while (i < 7000000)
         i++;
 }
 
@@ -66,8 +66,12 @@ int game_loop(t_game *game)
         player->player_x += 1;
         player->direction = 's';
     }
-    if (game->projectile_delay < 30)
+    if (game->projectile_delay < 40)
         game->projectile_delay++;
+    /*mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
+                game->ground1, 0, 0);
+    mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
+                game->ground1, 500, 0);*/
     draw_path(game, map);
     draw_walls(game, map);
     draw_scene(game);
@@ -82,7 +86,7 @@ int handle_keypress(int keycode, t_game *game)
     close_window(keycode, game);
     if (keycode >= 0 && keycode <= 255)
         game->key_states[keycode] = 1;
-    if (game->projectile_delay >= 30 && keycode == 32)
+    if (game->projectile_delay >= 40 && keycode == 32)
     {
         game->projectile_delay = 0;
         if (!game->projectiles)
@@ -178,11 +182,10 @@ void    init_map(t_game *game, t_matrix *map)
 void    init_game(t_game *game, t_matrix *map)
 {
     t_player *player;
-
     int i;
     
     player = game->player;
-    game->projectile_delay = 30;
+    game->projectile_delay = 40;
     game->map = map;
     game->mlx_ptr = mlx_init();
     player->player_x = player->player_x * 64 + 17;

@@ -60,6 +60,7 @@ typedef struct gameData
 	void	*mlx_ptr;
 	void	*mlx_window;
 	void	*ground;
+	void	*ground1;
 	void	*wall;
 	int		projectile_delay;
 	t_player *player;
