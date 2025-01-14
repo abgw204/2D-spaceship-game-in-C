@@ -1,5 +1,4 @@
 #include "../main.h"
-#include "../color.h"
 
 bool    is_wall_left(int x, int y, t_matrix *map)
 {

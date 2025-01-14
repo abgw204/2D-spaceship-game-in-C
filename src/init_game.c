@@ -18,7 +18,7 @@ void    delay_scene()
     int i;
 
     i = 0;
-    while (i < 7000000)
+    while (i < 500000)
         i++;
 }
 
@@ -68,8 +68,8 @@ int game_loop(t_game *game)
     }
     if (game->projectile_delay < 40)
         game->projectile_delay++;
-    /*mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
-                game->ground1, 0, 0);*/
+    if (is_collectable(map, player))
+        exit(1);
     draw_path(game, map);
     draw_collectable(game, map);
     draw_walls(game, map);
@@ -93,14 +93,14 @@ int handle_keypress(int keycode, t_game *game)
         else
             append_projectile(&game->projectiles, create_projectile(player));
     }
-    return 0;
+    return (0);
 }
 
 int handle_keyrelease(int keycode, t_game *game)
 {
     if (keycode >= 0 && keycode <= 255)
         game->key_states[keycode] = 0;
-    return 0;
+    return (0);
 }
 
 void    draw_path(t_game *game, t_matrix *map)
@@ -118,7 +118,8 @@ void    draw_path(t_game *game, t_matrix *map)
     {
         while (++i < map->y - 1)
         {
-            if (map->matrix[j][i] == PATH || map->matrix[j][i] == PLAYER_START)
+            if (map->matrix[j][i] == PATH || map->matrix[j][i] == PLAYER_START 
+             || map->matrix[j][i] == COLLECTABLE)
             {
                 mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
                 game->ground, gap_y, gap_x);
@@ -199,7 +200,7 @@ void    init_map(t_game *game, t_matrix *map)
 
     x = map->x * 64;
     y = map->y * 64;
-    game->mlx_window = mlx_new_window(game->mlx_ptr, y, x + 100, "so_long");
+    game->mlx_window = mlx_new_window(game->mlx_ptr, y, x, "so_long");
     draw_walls(game, map);
     mlx_loop_hook(game->mlx_ptr, game_loop, game);
     mlx_hook(game->mlx_window, 2, 1L << 0, handle_keypress, game);

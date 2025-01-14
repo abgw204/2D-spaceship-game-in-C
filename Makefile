@@ -29,7 +29,8 @@ FUNCTIONS =	main.c \
 			$(GAME_DIR)/draw_projectile_right.c \
 			$(GAME_DIR)/create_projectile.c \
 			$(GAME_DIR)/draw_astronaut.c \
-			$(GAME_DIR)/is_wall.c
+			$(GAME_DIR)/is_wall.c \
+			$(GAME_DIR)/is_collectable.c
  
 OBJS =	main.o \
 		$(MAP_PARSING_DIR)/map_error.o \
@@ -56,7 +57,8 @@ OBJS =	main.o \
 		$(GAME_DIR)/draw_projectile_right.o \
 		$(GAME_DIR)/create_projectile.o \
 		$(GAME_DIR)/draw_astronaut.o \
-		$(GAME_DIR)/is_wall.o
+		$(GAME_DIR)/is_wall.o \
+		$(GAME_DIR)/is_collectable.o
 
 LIB = so_long.a
 

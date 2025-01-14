@@ -113,5 +113,6 @@ bool    is_wall_left(int x, int y, t_matrix *map);
 bool    is_wall_right(int x, int y, t_matrix *map);
 bool    is_wall_up(int x, int y, t_matrix *map);
 bool    is_wall_down(int x, int y, t_matrix *map);
+bool    is_collectable(t_matrix *map, t_player *player);
 
 #endif
