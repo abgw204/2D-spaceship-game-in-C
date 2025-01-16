@@ -99,10 +99,11 @@ int game_loop(t_game *game)
 	can_exit(game, map, player);
 	exit_if(game, map, player);
 	draw_path(game, map);
+	draw_exit(game, map);
 	draw_collectable(game, map);
 	draw_walls(game, map);
 	draw_scene(game);
-	return 0;
+	return (0);
 }
 
 int handle_keypress(int keycode, t_game *game)
@@ -196,6 +197,36 @@ void    draw_walls(t_game *game, t_matrix *map)
 	}
 }
 
+void    draw_exit(t_game *game, t_matrix *map)
+{
+	int i;
+	int j;
+	int gap_y;
+	int gap_x;
+
+	i = -1;
+	j = -1;
+	gap_y = 0;
+	gap_x = 0;
+	while (++j < map->x)
+	{
+		while (++i < map->y)
+		{
+			if (map->matrix[j][i] == EXIT)
+			{
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
+					game->exit, gap_y, gap_x);
+				gap_y += 64;
+			}
+			else
+				gap_y += 64;
+		}
+		gap_y = 0;
+		gap_x += 64;
+		i = -1;
+	}
+}
+
 void    draw_collectable(t_game *game, t_matrix *map)
 {
 	int i;
@@ -232,7 +263,7 @@ void    init_map(t_game *game, t_matrix *map)
 
 	x = map->x * 64;
 	y = map->y * 64;
-	game->mlx_window = mlx_new_window(game->mlx_ptr, y, x, "so_long");
+	game->mlx_window = mlx_new_window(game->mlx_ptr, y, x + 100, "so_long");
 	draw_walls(game, map);
 	mlx_loop_hook(game->mlx_ptr, game_loop, game);
 	mlx_hook(game->mlx_window, 2, 1L << 0, handle_keypress, game);
