@@ -67,6 +67,7 @@ typedef struct gameData
 	t_matrix *map;
 	Projectile *projectiles;
 	int		key_states[256];
+	bool	can_exit;
 } t_game;
 
 

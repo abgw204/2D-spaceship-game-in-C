@@ -32,7 +32,7 @@ void    count_collectables(t_matrix *map)
 
 void    get_player_start(t_matrix *map, t_player *player)
 {
-    int j;
+	int j;
 	int i;
 
 	i = 0;

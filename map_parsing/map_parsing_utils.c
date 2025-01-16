@@ -38,6 +38,7 @@ void	is_map_valid(t_matrix *map, char *argv, t_player *player)
 		map_error();
 	}
 	recriate_map(map, argv);
+	count_collectables(map);
 }
 
 bool	valid_chars(char c)
