@@ -62,7 +62,14 @@ typedef struct gameData
 	void	*ground;
 	void	*astronaut;
 	void	*wall;
-	void	*exit;
+	void	*up;
+	void	*right_up;
+	void	*right;
+	void	*right_down;
+	void	*left_up;
+	void	*left;
+	void	*left_down;
+	void	*down;
 	int		projectile_delay;
 	t_player *player;
 	t_matrix *map;
@@ -72,7 +79,7 @@ typedef struct gameData
 } t_game;
 
 
-void	map_error();
+void	map_error(void);
 void    init_matrix(t_matrix *matrix, char *filename);
 t_matrix create_map(int argc, char *argv[]);
 char	**create_matrix(int rows, int cols);

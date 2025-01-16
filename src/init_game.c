@@ -18,15 +18,23 @@ void    delay_scene()
 	int i;
 
 	i = 0;
-	while (i < 5000000)
+	while (i < 500000)
 		i++;
 }
 
 void draw_scene(t_game *game)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = game->player;
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->up, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left_up, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left_down, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->down, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right_down, 64, 2 * 64);
+	mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right, 64, 2 * 64);
+	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right_up, 64, 2 * 64);
 	if (player->direction == 'w')
 		draw_spaceship_up(player->player_x, player->player_y, game);
 	else if (player->direction == 'a')
@@ -94,12 +102,12 @@ int game_loop(t_game *game)
 
 	player = game->player;
 	map = game->map;
-	delay_scene();
+	//delay_scene();
 	movement_structure(game, player, map);
 	can_exit(game, map, player);
 	exit_if(game, map, player);
 	draw_path(game, map);
-	draw_exit(game, map);
+	//draw_exit(game, map);
 	draw_collectable(game, map);
 	draw_walls(game, map);
 	draw_scene(game);
@@ -197,7 +205,7 @@ void    draw_walls(t_game *game, t_matrix *map)
 	}
 }
 
-void    draw_exit(t_game *game, t_matrix *map)
+/*void    draw_exit(t_game *game, t_matrix *map)
 {
 	int i;
 	int j;
@@ -225,7 +233,7 @@ void    draw_exit(t_game *game, t_matrix *map)
 		gap_x += 64;
 		i = -1;
 	}
-}
+}*/
 
 void    draw_collectable(t_game *game, t_matrix *map)
 {
