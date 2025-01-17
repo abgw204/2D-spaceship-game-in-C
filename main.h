@@ -29,8 +29,8 @@
 
 typedef struct gameObjects
 {
-	int		player_x;
-	int		player_y;
+	int		x;
+	int		y;
 	int 	exit_x;
 	int		exit_y;
 	int		x_map;
@@ -57,8 +57,8 @@ typedef struct spaceshipProjectiles
 
 typedef struct gameData
 {
-	void	*mlx_ptr;
-	void	*mlx_window;
+	void	*mlx;
+	void	*win;
 	void	*ground;
 	void	*astronaut;
 	void	*wall;
@@ -70,10 +70,11 @@ typedef struct gameData
 	void	*left;
 	void	*left_down;
 	void	*down;
+	int		anim_counter;
 	int		projectile_delay;
-	t_player *player;
-	t_matrix *map;
-	Projectile *projectiles;
+	t_player	*player;
+	t_matrix	*map;
+	Projectile	*projectiles;
 	int		key_states[256];
 	bool	can_exit;
 } t_game;

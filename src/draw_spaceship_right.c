@@ -17,21 +17,21 @@ static void    draw_in_fact(int x, int y, char *pixels, t_game *game)
         while (matrix[j][i] != '\0')
         {
             if (matrix[j][i] == 'X')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, DARK_GRAY);
+                mlx_pixel_put(game->mlx, game->win, y, x, DARK_GRAY);
             else if (matrix[j][i] == '*')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, WHITE);
+                mlx_pixel_put(game->mlx, game->win, y, x, WHITE);
             else if (matrix[j][i] == '#')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, PURPLE);
+                mlx_pixel_put(game->mlx, game->win, y, x, PURPLE);
             else if (matrix[j][i] == '&')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, BLUE);
+                mlx_pixel_put(game->mlx, game->win, y, x, BLUE);
             else if (matrix[j][i] == '$')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHT_GRAY);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHT_GRAY);
             else if (matrix[j][i] == '@')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, DARK_PURPLE);
+                mlx_pixel_put(game->mlx, game->win, y, x, DARK_PURPLE);
             else if (matrix[j][i] == 'O')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, GRAY_2);
+                mlx_pixel_put(game->mlx, game->win, y, x, GRAY_2);
             else if (matrix[j][i] == '-')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, RED);
+                mlx_pixel_put(game->mlx, game->win, y, x, RED);
             y++;
             i++;
         }

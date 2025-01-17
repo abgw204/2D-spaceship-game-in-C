@@ -18,8 +18,30 @@ void    delay_scene()
 	int i;
 
 	i = 0;
-	while (i < 500000)
+	while (i < 5000000)
 		i++;
+}
+
+void    animate_exit(t_game *game, int j, int i)
+{
+    if (game->anim_counter < 40)
+        mlx_put_image_to_window(game->mlx, game->win, game->up, j, i);
+    else if (game->anim_counter < 80)
+	    mlx_put_image_to_window(game->mlx, game->win, game->left_up, j, i);
+    else if(game->anim_counter < 120)
+        mlx_put_image_to_window(game->mlx, game->win, game->left, j, i);
+    else if(game->anim_counter < 160)
+	    mlx_put_image_to_window(game->mlx, game->win, game->left_down, j, i);
+    else if(game->anim_counter < 200)
+	    mlx_put_image_to_window(game->mlx, game->win, game->down, j, i);
+    else if(game->anim_counter < 240)
+	    mlx_put_image_to_window(game->mlx, game->win, game->right_down, j, i);
+    else if(game->anim_counter < 280)
+	    mlx_put_image_to_window(game->mlx, game->win, game->right, j, i);
+    else if(game->anim_counter < 320)
+        mlx_put_image_to_window(game->mlx, game->win, game->right_up, j, i);
+    else if (game->anim_counter >= 320)
+        game->anim_counter = 0;
 }
 
 void draw_scene(t_game *game)
@@ -27,22 +49,16 @@ void draw_scene(t_game *game)
 	t_player	*player;
 
 	player = game->player;
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->up, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left_up, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->left_down, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->down, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right_down, 64, 2 * 64);
-	mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right, 64, 2 * 64);
-	//mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->right_up, 64, 2 * 64);
+    animate_exit(game, player->exit_y * 64, player->exit_x * 64);
+    game->anim_counter++;
 	if (player->direction == 'w')
-		draw_spaceship_up(player->player_x, player->player_y, game);
+		draw_spaceship_up(player->x, player->y, game);
 	else if (player->direction == 'a')
-		draw_spaceship_left(player->player_x, player->player_y, game);
+		draw_spaceship_left(player->x, player->y, game);
 	else if (player->direction == 's')
-		draw_spaceship_down(player->player_x, player->player_y, game);
+		draw_spaceship_down(player->x, player->y, game);
 	else if (player->direction == 'd')
-		draw_spaceship_right(player->player_x, player->player_y, game);
+		draw_spaceship_right(player->x, player->y, game);
 	if (game->projectile_delay < 30)
 		game->projectile_delay++;
 	move_projectiles(&game->projectiles, game);
@@ -50,35 +66,35 @@ void draw_scene(t_game *game)
 
 void	movement_structure(t_game *game, t_player *player, t_matrix *map)
 {
-	if (game->key_states[97] && !is_wall_left(player->player_x,
-				player->player_y, map))
+	if (game->key_states[97] && !is_wall_left(player->x,
+				player->y, map))
 	{
-		player->player_y -= 1;
+		player->y -= 1;
 		player->direction = 'a';
 	}
-	else if (game->key_states[100] && !is_wall_right(player->player_x,
-				player->player_y, map))
+	else if (game->key_states[100] && !is_wall_right(player->x,
+				player->y, map))
 	{
-		player->player_y += 1;
+		player->y += 1;
 		player->direction = 'd';
 	}
-	else if (game->key_states[119] && !is_wall_up(player->player_x,
-				player->player_y, map))
+	else if (game->key_states[119] && !is_wall_up(player->x,
+				player->y, map))
 	{
-		player->player_x -= 1;
+		player->x -= 1;
 		player->direction = 'w';
 	}
-	else if (game->key_states[115] && !is_wall_down(player->player_x,
-				player->player_y, map))
+	else if (game->key_states[115] && !is_wall_down(player->x,
+				player->y, map))
 	{
-		player->player_x += 1;
+		player->x += 1;
 		player->direction = 's';
 	}
 }
 
 void	exit_if(t_game *game, t_matrix *map, t_player *player)
 {
-	if (map->matrix[player->player_x / 64][player->player_y / 64] == EXIT &&
+	if (map->matrix[(player->x + 10) / 64][(player->y + 10) / 64] == EXIT &&
 			game->can_exit == true)
 		exit(1);
 	// player animation HERE
@@ -89,7 +105,7 @@ void	can_exit(t_game *game, t_matrix *map, t_player *player)
 	if (is_collectable(map, player))
 	{
 		map->collectables--;
-		map->matrix[player->player_x / 64][player->player_y / 64] = PATH;
+		map->matrix[(player->x + 10) / 64][(player->y + 10) / 64] = PATH;
 	}
 	if (map->collectables == 0)
 		game->can_exit = true;
@@ -102,12 +118,11 @@ int game_loop(t_game *game)
 
 	player = game->player;
 	map = game->map;
-	//delay_scene();
+	delay_scene();
 	movement_structure(game, player, map);
 	can_exit(game, map, player);
 	exit_if(game, map, player);
 	draw_path(game, map);
-	//draw_exit(game, map);
 	draw_collectable(game, map);
 	draw_walls(game, map);
 	draw_scene(game);
@@ -160,8 +175,8 @@ void    draw_path(t_game *game, t_matrix *map)
 					map->matrix[j][i] == PLAYER_START ||
 					map->matrix[j][i] == COLLECTABLE)
 			{
-				mlx_put_image_to_window(game->mlx_ptr,
-						game->mlx_window,
+				mlx_put_image_to_window(game->mlx,
+						game->win,
 						game->ground, gap_y, gap_x);
 				gap_y += 64;
 			}
@@ -191,8 +206,8 @@ void    draw_walls(t_game *game, t_matrix *map)
 		{
 			if (map->matrix[j][i] == WALL)
 			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->mlx_window,
+				mlx_put_image_to_window(game->mlx,
+					game->win,
 					game->wall, gap_y, gap_x);
 				gap_y += 64;
 			}
@@ -222,7 +237,7 @@ void    draw_walls(t_game *game, t_matrix *map)
 		{
 			if (map->matrix[j][i] == EXIT)
 			{
-				mlx_put_image_to_window(game->mlx_ptr, game->mlx_window,
+				mlx_put_image_to_window(game->mlx, game->win,
 					game->exit, gap_y, gap_x);
 				gap_y += 64;
 			}
@@ -271,12 +286,13 @@ void    init_map(t_game *game, t_matrix *map)
 
 	x = map->x * 64;
 	y = map->y * 64;
-	game->mlx_window = mlx_new_window(game->mlx_ptr, y, x + 100, "so_long");
+	game->win = mlx_new_window(game->mlx, y, x + 100, "so_long");
+    game->anim_counter = 0;
 	draw_walls(game, map);
-	mlx_loop_hook(game->mlx_ptr, game_loop, game);
-	mlx_hook(game->mlx_window, 2, 1L << 0, handle_keypress, game);
-	mlx_hook(game->mlx_window, 3, 1L << 1, handle_keyrelease, game);
-	mlx_loop(game->mlx_ptr);
+	mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_hook(game->win, 2, 1L << 0, handle_keypress, game);
+	mlx_hook(game->win, 3, 1L << 1, handle_keyrelease, game);
+	mlx_loop(game->mlx);
 }
 
 void    init_game(t_game *game, t_matrix *map)
@@ -288,9 +304,9 @@ void    init_game(t_game *game, t_matrix *map)
 	game->projectile_delay = 30;
 	game->can_exit = false;
 	game->map = map;
-	game->mlx_ptr = mlx_init();
-	player->player_x = player->player_x * 64 + 17;
-	player->player_y = player->player_y * 64 + 17;
+	game->mlx = mlx_init();
+	player->x = player->x * 64 + 17;
+	player->y = player->y * 64 + 17;
 	player->direction = 'd';
 	i = 0;
 	while (i < 256)
@@ -298,7 +314,7 @@ void    init_game(t_game *game, t_matrix *map)
 		game->key_states[i] = 0;
 		i++;
 	}
-	if (!game->mlx_ptr)
+	if (!game->mlx)
 	{
 		free_map(map);
 		map_error();

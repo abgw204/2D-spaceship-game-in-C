@@ -31,7 +31,7 @@ void	is_map_valid(t_matrix *map, char *argv, t_player *player)
 	get_player_start(map, player);
 	get_exit_pos(map, player);
 	count_collectables(map);
-	flood_fill(map, player->player_x, player->player_y);
+	flood_fill(map, player->x, player->y);
 	if (map->player_exits > 1 || !map->player_exits || map->collectables)
 	{
 		free_map(map);

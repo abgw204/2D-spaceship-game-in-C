@@ -9,23 +9,23 @@ Projectile	*create_projectile(t_player *player)
 		return (NULL);
     if (player->direction == 'w')
     {
-	    new_projectile->x = player->player_x - 10;
-        new_projectile->y = player->player_y + 11;
+	    new_projectile->x = player->x - 10;
+        new_projectile->y = player->y + 11;
     }
     else if (player->direction == 'a')
     {
-	    new_projectile->x = player->player_x + 11;
-        new_projectile->y = player->player_y - 10;
+	    new_projectile->x = player->x + 11;
+        new_projectile->y = player->y - 10;
     }
     else if (player->direction == 's')
     {
-	    new_projectile->x = player->player_x + 30;
-        new_projectile->y = player->player_y + 11;
+	    new_projectile->x = player->x + 30;
+        new_projectile->y = player->y + 11;
     }
     else if (player->direction == 'd')
     {
-	    new_projectile->x = player->player_x + 11;
-        new_projectile->y = player->player_y + 30;
+	    new_projectile->x = player->x + 11;
+        new_projectile->y = player->y + 30;
     }
     new_projectile->direction = player->direction;
 	new_projectile->next = NULL;

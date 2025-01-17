@@ -14,7 +14,7 @@
 
 bool    is_collectable(t_matrix *map, t_player *player)
 {
-    if (map->matrix[player->player_x / 64][player->player_y / 64] == 'C')
+    if (map->matrix[player->x / 64][player->y / 64] == 'C')
         return (true);
     return (false);
 }

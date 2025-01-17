@@ -17,17 +17,17 @@ static void    draw_in_fact(int x, int y, char *pixels, t_game *game)
         while (matrix[j][i] != '\0')
         {
             if (matrix[j][i] == '.')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, RED);
+                mlx_pixel_put(game->mlx, game->win, y, x, RED);
             else if (matrix[j][i] == '@')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, WHITE);
+                mlx_pixel_put(game->mlx, game->win, y, x, WHITE);
             else if (matrix[j][i] == 'O')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHT_BLUE);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHT_BLUE);
             else if (matrix[j][i] == '+')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHT_CIAN);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHT_CIAN);
             else if (matrix[j][i] == 'X')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, DARK_BLUE);
+                mlx_pixel_put(game->mlx, game->win, y, x, DARK_BLUE);
             else if (matrix[j][i] == 'o')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHT_GRAY);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHT_GRAY);
             y++;
             i++;
         }

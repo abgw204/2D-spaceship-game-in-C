@@ -17,11 +17,11 @@ static void    draw_in_fact(int x, int y, char *pixels, t_game *game)
         while (matrix[j][i] != '\0')
         {
             if (matrix[j][i] == 'X')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHT_ORANGE);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHT_ORANGE);
             else if (matrix[j][i] == '#')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, ORANGE);
+                mlx_pixel_put(game->mlx, game->win, y, x, ORANGE);
             else if (matrix[j][i] == 'O')
-                mlx_pixel_put(game->mlx_ptr, game->mlx_window, y, x, LIGHTER_ORANGE);
+                mlx_pixel_put(game->mlx, game->win, y, x, LIGHTER_ORANGE);
             y++;
             i++;
         }

@@ -43,8 +43,8 @@ void    get_player_start(t_matrix *map, t_player *player)
 		{
 			if (map->matrix[j][i] == PLAYER_START)
 			{
-				player->player_x = j;
-				player->player_y = i;
+				player->x = j;
+				player->y = i;
 				return ;
 			}
 		}
