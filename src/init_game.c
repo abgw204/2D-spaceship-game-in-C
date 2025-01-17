@@ -286,7 +286,7 @@ void    init_map(t_game *game, t_matrix *map)
 
 	x = map->x * 64;
 	y = map->y * 64;
-	game->win = mlx_new_window(game->mlx, y, x + 100, "so_long");
+	game->win = mlx_new_window(game->mlx, y, x, "so_long");
     game->anim_counter = 0;
 	draw_walls(game, map);
 	mlx_loop_hook(game->mlx, game_loop, game);
