@@ -60,7 +60,6 @@ typedef struct gameData
 	void	*mlx;
 	void	*win;
 	void	*ground;
-	void	*astronaut;
 	void	*wall;
 	void	*up;
 	void	*right_up;
@@ -124,6 +123,5 @@ bool    is_wall_right(int x, int y, t_matrix *map);
 bool    is_wall_up(int x, int y, t_matrix *map);
 bool    is_wall_down(int x, int y, t_matrix *map);
 bool    is_collectable(t_matrix *map, t_player *player);
-void    draw_exit(t_game *game, t_matrix *map);
 
 #endif

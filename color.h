@@ -14,6 +14,7 @@
 # define COLOR_H
 
 # define WHITE 0xffffff
+# define BLACK 0x000000
 # define DARK_GRAY 0x464a4f
 # define PURPLE 0x6728d6
 # define BLUE 0xb0d6ff

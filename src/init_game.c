@@ -52,13 +52,13 @@ void draw_scene(t_game *game)
     animate_exit(game, player->exit_y * 64, player->exit_x * 64);
     game->anim_counter++;
 	if (player->direction == 'w')
-		draw_spaceship_up(player->x, player->y, game);
+		draw_spaceship_up(player->x - 5, player->y - 10, game);
 	else if (player->direction == 'a')
-		draw_spaceship_left(player->x, player->y, game);
+		draw_spaceship_left(player->x - 5, player->y - 10, game);
 	else if (player->direction == 's')
-		draw_spaceship_down(player->x, player->y, game);
+		draw_spaceship_down(player->x - 5, player->y - 10, game);
 	else if (player->direction == 'd')
-		draw_spaceship_right(player->x, player->y, game);
+		draw_spaceship_right(player->x - 5, player->y - 10, game);
 	if (game->projectile_delay < 30)
 		game->projectile_delay++;
 	move_projectiles(&game->projectiles, game);
@@ -94,9 +94,9 @@ void	movement_structure(t_game *game, t_player *player, t_matrix *map)
 
 void	exit_if(t_game *game, t_matrix *map, t_player *player)
 {
-	if (map->matrix[(player->x + 10) / 64][(player->y + 10) / 64] == EXIT &&
+	if (map->matrix[player->x / 64][player->y / 64] == EXIT &&
 			game->can_exit == true)
-		exit(1);
+		close_window(65307, game);
 	// player animation HERE
 }
 
@@ -105,7 +105,7 @@ void	can_exit(t_game *game, t_matrix *map, t_player *player)
 	if (is_collectable(map, player))
 	{
 		map->collectables--;
-		map->matrix[(player->x + 10) / 64][(player->y + 10) / 64] = PATH;
+		map->matrix[player->x / 64][player->y / 64] = PATH;
 	}
 	if (map->collectables == 0)
 		game->can_exit = true;
@@ -220,36 +220,6 @@ void    draw_walls(t_game *game, t_matrix *map)
 	}
 }
 
-/*void    draw_exit(t_game *game, t_matrix *map)
-{
-	int i;
-	int j;
-	int gap_y;
-	int gap_x;
-
-	i = -1;
-	j = -1;
-	gap_y = 0;
-	gap_x = 0;
-	while (++j < map->x)
-	{
-		while (++i < map->y)
-		{
-			if (map->matrix[j][i] == EXIT)
-			{
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->exit, gap_y, gap_x);
-				gap_y += 64;
-			}
-			else
-				gap_y += 64;
-		}
-		gap_y = 0;
-		gap_x += 64;
-		i = -1;
-	}
-}*/
-
 void    draw_collectable(t_game *game, t_matrix *map)
 {
 	int i;
@@ -305,8 +275,8 @@ void    init_game(t_game *game, t_matrix *map)
 	game->can_exit = false;
 	game->map = map;
 	game->mlx = mlx_init();
-	player->x = player->x * 64 + 17;
-	player->y = player->y * 64 + 17;
+	player->x = player->x * 64 + 20;
+	player->y = player->y * 64 + 32;
 	player->direction = 'd';
 	i = 0;
 	while (i < 256)

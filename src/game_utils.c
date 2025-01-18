@@ -2,28 +2,16 @@
 
 static void	destroy_images(t_game *game)
 {
-	if (game->ground)
-        mlx_destroy_image(game->mlx, game->ground);
-    if (game->astronaut)
-        mlx_destroy_image(game->mlx, game->astronaut);
-    if (game->wall)
-        mlx_destroy_image(game->mlx, game->wall);
-    if (game->up)
-        mlx_destroy_image(game->mlx, game->up);
-    if (game->left_up)
-        mlx_destroy_image(game->mlx, game->left_up);
-    if (game->left)
-        mlx_destroy_image(game->mlx, game->left);
-    if (game->left_down)
-        mlx_destroy_image(game->mlx, game->left_down);
-    if (game->down)
-        mlx_destroy_image(game->mlx, game->down);
-    if (game->right_down)
-        mlx_destroy_image(game->mlx, game->right_down);
-    if (game->right)
-        mlx_destroy_image(game->mlx, game->right);
-    if (game->right_up)
-        mlx_destroy_image(game->mlx, game->right_up);
+    mlx_destroy_image(game->mlx, game->ground);
+    mlx_destroy_image(game->mlx, game->wall);
+    mlx_destroy_image(game->mlx, game->up);
+    mlx_destroy_image(game->mlx, game->left_up);
+    mlx_destroy_image(game->mlx, game->left);
+    mlx_destroy_image(game->mlx, game->left_down);
+    mlx_destroy_image(game->mlx, game->down);
+    mlx_destroy_image(game->mlx, game->right_down);
+    mlx_destroy_image(game->mlx, game->right);
+    mlx_destroy_image(game->mlx, game->right_up);
 
 }
 

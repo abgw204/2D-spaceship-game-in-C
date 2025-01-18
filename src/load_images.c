@@ -7,7 +7,6 @@ void    load_images(t_game *game)
 
 	game->ground = mlx_xpm_file_to_image(game->mlx, "textures/ground.xpm", &width, &height);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &width, &height);
-	game->astronaut = mlx_xpm_file_to_image(game->mlx, "textures/astronaut.xpm", &width, &height);
 	game->up = mlx_xpm_file_to_image(game->mlx, "textures/up.xpm", &width, &height);
 	game->left_up = mlx_xpm_file_to_image(game->mlx, "textures/left_up.xpm", &width, &height);
 	game->left = mlx_xpm_file_to_image(game->mlx, "textures/left.xpm", &width, &height);
