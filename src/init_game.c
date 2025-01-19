@@ -52,13 +52,13 @@ void draw_scene(t_game *game)
     animate_exit(game, player->exit_y * 64, player->exit_x * 64);
     game->anim_counter++;
 	if (player->direction == 'w')
-		draw_spaceship_up(player->x - 5, player->y - 10, game);
+		draw_spaceship_up(player->x - 15, player->y - 12, game);
 	else if (player->direction == 'a')
-		draw_spaceship_left(player->x - 5, player->y - 10, game);
+		draw_spaceship_left(player->x - 15, player->y - 12, game);
 	else if (player->direction == 's')
-		draw_spaceship_down(player->x - 5, player->y - 10, game);
+		draw_spaceship_down(player->x - 15, player->y - 12, game);
 	else if (player->direction == 'd')
-		draw_spaceship_right(player->x - 5, player->y - 10, game);
+		draw_spaceship_right(player->x - 15, player->y - 12, game);
 	if (game->projectile_delay < 30)
 		game->projectile_delay++;
 	move_projectiles(&game->projectiles, game);
@@ -275,8 +275,8 @@ void    init_game(t_game *game, t_matrix *map)
 	game->can_exit = false;
 	game->map = map;
 	game->mlx = mlx_init();
-	player->x = player->x * 64 + 20;
-	player->y = player->y * 64 + 32;
+	player->x = player->x * 64 + 30;
+	player->y = player->y * 64 + 45;
 	player->direction = 'd';
 	i = 0;
 	while (i < 256)
